@@ -6,7 +6,7 @@ var adjustDate = function(date) {
     var adjusted = new Date(date.getTime());
     var isLeap = isLeapYear(adjusted.getFullYear());
     var inc = adjusted.getDay() > 3 ? 1 : -1;
-    var target = adjusted.getHours() == 23 ? 6 : 6;
+    var target = adjusted.getHours() < 3 ? 0 : 6;
     while(adjusted.getDay() != target) {
         do {
             adjusted.setFullYear(adjusted.getFullYear() + inc);
