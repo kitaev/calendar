@@ -20,7 +20,7 @@ var updateTimeAndDate = function(now, adjusted) {
     if (adjusted.getDay() == 6) {
         date = "<span class=\"text-danger\">" + date + "</span>";
     }
-    document.getElementById("date").innerHTML = date + adjusted.customFormat(", #MMMM# #DD# " + now.getFullYear());
+    document.getElementById("date").innerHTML = date + adjusted.customFormat(", #MMMM#&nbsp;#DD# " + now.getFullYear());
     var hour =adjusted.customFormat("#hhh#");
     if (hour.length == 1) {
         hour = "0" + hour;
