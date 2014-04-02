@@ -22,8 +22,8 @@ var updateTimeAndDate = function(now, adjusted) {
     }
     document.getElementById("date").innerHTML = date + adjusted.customFormat(", #MMMM# #DD# " + now.getFullYear());
     var hour =adjusted.customFormat("#hhh#");
-    if (hour === "0") {
-        hour = "00";
+    if (hour.length == 1) {
+        hour = "0" + hour;
     }
     document.getElementById("time").innerHTML = hour + adjusted.customFormat(":#mm#:#ss#");
 }
