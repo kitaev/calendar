@@ -28,3 +28,36 @@ body {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
 }
+
+/* Button styles: */
+div:hover > a i.fb { color: #3b5998; }
+div:hover > a i.tw { color: #00aced; }
+div:hover > a i.google { color: #d9534f; }
+div:hover > a i.vk {color: #45668e; }
+span.google { color: #d9534f; }
+
+div > a i.fb { color: #e5e5e5; }
+div > a i.tw { color: #e5e5e5; }
+div > a i.google { color: #e5e5e5; }
+div > a i.vk {color: #e5e5e5; }
+
+.google-plus-one{
+   overflow: hidden;
+   position: relative;
+}
+
+.google-plus-one i{
+   position: absolute;
+   left: -4px;
+   bottom: -5px;
+}
+
+.google-plus-one span{
+   font-size: 16px;
+   font-weight: 900;
+   line-height: 10px;
+   margin-left: 15px;
+}
+
+.btn-xs.google-plus-one span{ font-size: 12px;}
+.btn-xs.google-plus-one i{ bottom: -7px; }
