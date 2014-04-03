@@ -17,7 +17,7 @@ var adjustDate = function(date) {
 
 var updateTimeAndDate = function(now, adjusted) {
     var date = adjusted.customFormat("#DDDD#");
-    if (adjusted.getDay() == 6) {
+    if (adjusted.getDay() == 6 || adjusted.getDay() == 0) {
         date = "<span class=\"text-danger\">" + date + "</span>";
     }
     document.getElementById("date").innerHTML = date + adjusted.customFormat(", #MMMM#&nbsp;#DD# " + now.getFullYear());
