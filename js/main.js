@@ -60,9 +60,6 @@ var generateMonth = function(adjusted) {
     while(date.getFullYear() * 12 + date.getMonth() <= lastMonth) {
         generated += "<tr>" + generateWeekRow(date, adjusted.getMonth(), adjusted.getDate()) + "</tr>"
     }
-    if (date.getDay() == 1) {
-        generated += "<tr>" + generateWeekRow(date, adjusted.getMonth(), adjusted.getDate()) + "</tr>"
-    }
     return generated;
 }
 
