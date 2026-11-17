@@ -69,14 +69,41 @@ var updateCalendar = function(now, adjusted) {
     body.innerHTML = generateMonth(adjusted);
 }
 
-var updateView = function() {
+// Date from ?date=yyyy-mm-dd, or null if missing or not a real date.
+var parseDateParam = function(search) {
+    var match = /[?&]date=(\d{4})-(\d{2})-(\d{2})(?:&|$)/.exec(search);
+    if (!match) {
+        return null;
+    }
+    var year = +match[1], month = +match[2] - 1, day = +match[3];
+    var date = new Date(year, month, day);
+    date.setFullYear(year); // years 0000-0099 would otherwise map to 19xx
+    if (date.getFullYear() != year || date.getMonth() != month || date.getDate() != day) {
+        return null;
+    }
+    return date;
+}
+
+var fixedDate = null;
+
+// Current time of day, on the date from the URL if one was given.
+var currentDate = function() {
     var now = new Date();
+    if (fixedDate) {
+        now.setFullYear(fixedDate.getFullYear(), fixedDate.getMonth(), fixedDate.getDate());
+    }
+    return now;
+}
+
+var updateView = function() {
+    var now = currentDate();
     var adjusted = adjustDate(now);
     updateTimeAndDate(now, adjusted);
     updateCalendar(now, adjusted);
 }
 
 var init = function() {
+    fixedDate = parseDateParam(window.location.search);
     document.getElementById("jumbo")['onclick'] = function() {
         if (document.getElementById("dateandtime").style.display == 'none') {
             document.getElementById("dateandtime").style.display = 'block';
