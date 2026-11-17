@@ -97,3 +97,17 @@ body {
     padding: 6px 2px;
   }
 }
+
+/* Copyright link: gray dashed underline so it reads as clickable. */
+.footer-bar a.text-muted {
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-decoration-color: #999;
+  text-underline-offset: 3px;
+}
+
+.footer-bar a.text-muted:hover,
+.footer-bar a.text-muted:focus {
+  color: #777;
+  text-decoration-color: #777;
+}
