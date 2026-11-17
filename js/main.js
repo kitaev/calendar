@@ -113,8 +113,65 @@ var init = function() {
             document.getElementById("calendar").style.display = 'block';
         }
     };
+    document.getElementById("share").onclick = share;
     document.getElementById("copyright-year").innerHTML = new Date().getFullYear();
     updateView();
     window.setInterval(updateView, 1000);
 }
 window.onload = init
+// Phones and tablets get the native share sheet; desktops copy the link.
+var isMobile = function() {
+    if (navigator.userAgentData) {
+        return navigator.userAgentData.mobile;
+    }
+    return /Android|iPhone|iPad|iPod|Mobi/i.test(navigator.userAgent)
+        || (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1); // iPadOS
+}
+
+var copyText = function(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function(resolve, reject) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) {}
+        document.body.removeChild(area);
+        ok ? resolve() : reject();
+    });
+}
+
+var shareLabelTimer = null;
+var showShareLabel = function(text) {
+    var label = document.getElementById("share-label");
+    label.innerHTML = text;
+    window.clearTimeout(shareLabelTimer);
+    shareLabelTimer = window.setTimeout(function() { label.innerHTML = "Share"; }, 2000);
+}
+
+var copyLink = function(url) {
+    copyText(url).then(function() {
+        showShareLabel("Link copied");
+    }, function() {
+        window.prompt("Copy this link:", url);
+    });
+}
+
+var share = function() {
+    var url = window.location.href;
+    if (isMobile() && navigator.share) {
+        navigator.share({ title: document.title, url: url })["catch"](function(e) {
+            if (e && e.name != "AbortError") {
+                copyLink(url);
+            }
+        });
+    } else {
+        copyLink(url);
+    }
+}
