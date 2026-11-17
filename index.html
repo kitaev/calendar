@@ -7,9 +7,9 @@
     <title>Simple&nbsp;Calendar</title>
 
     <link rel="shortcut icon" href="calendar.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <!-- Local CSS -->
     <link rel="stylesheet" href="css/main.css" />
@@ -26,7 +26,7 @@
             <div id="dateandtime" style="display:block;">
                 <h1><span id="date"></span></h1>
                 <h2><span id="time"></span></h2>
-                <h3><small>click for more</small></h3>
+                <h3><small><span class="hint-click">click</span><span class="hint-tap">tap</span> for more</small></h3>
             </div>
             <div id="calendar" style="display:none;">
                 <div class="text-center h3" id="month-header"></div>
@@ -42,14 +42,20 @@
                     </tr></thead>
                     <tbody id="month-table"></tbody>
                 </table>
-                <h3><small>click for less</small></h3>
+                <h3><small><span class="hint-click">click</span><span class="hint-tap">tap</span> for less</small></h3>
             </div>
         </div>
 
         <div class="footer">
             <div class="footer-bar">
                 <button type="button" id="share" class="btn btn-link" title="Share this page" aria-label="Share this page">
-                    <i id="share-icon" class="fa fa-share-alt fa-lg" aria-hidden="true"></i>
+                    <svg class="icon icon-share" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" />
+                        <path d="M8.6 10.5l6.8-4M8.6 13.5l6.8 4" />
+                    </svg>
+                    <svg class="icon icon-check" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20 6L9 17l-5-5" />
+                    </svg>
                 </button>
                 <div class="text-muted small">&copy; <a class="text-muted" href="https://kitayev.online/">Alexander Kitayev</a> 2014&ndash;<span id="copyright-year">2026</span></div>
             </div>

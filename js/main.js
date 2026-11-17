@@ -151,12 +151,11 @@ var copyText = function(text) {
 var shareFeedbackTimer = null;
 var showCopied = function() {
     var button = document.getElementById("share");
-    var icon = document.getElementById("share-icon");
-    icon.className = "fa fa-check fa-lg";
+    button.className += " copied";
     button.title = "Link copied";
     window.clearTimeout(shareFeedbackTimer);
     shareFeedbackTimer = window.setTimeout(function() {
-        icon.className = "fa fa-share-alt fa-lg";
+        button.className = button.className.replace(/ copied/g, "");
         button.title = "Share this page";
     }, 2000);
 }
