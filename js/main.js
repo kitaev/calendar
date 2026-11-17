@@ -86,6 +86,7 @@ var init = function() {
             document.getElementById("calendar").style.display = 'block';
         }
     };
+    document.getElementById("copyright-year").innerHTML = new Date().getFullYear();
     updateView();
     window.setInterval(updateView, 1000);
 }
