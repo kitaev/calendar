@@ -24,6 +24,7 @@ body {
 }
 
 .jumbotron {
+  cursor: pointer; /* the whole box toggles between date and month views */
   margin-top: 20px;
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
