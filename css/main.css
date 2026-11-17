@@ -35,3 +35,8 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+
+/* Icon-only share button: line it up with the footer edge. */
+.footer-bar .btn-link {
+  padding-left: 0;
+}

@@ -147,17 +147,23 @@ var copyText = function(text) {
     });
 }
 
-var shareLabelTimer = null;
-var showShareLabel = function(text) {
-    var label = document.getElementById("share-label");
-    label.innerHTML = text;
-    window.clearTimeout(shareLabelTimer);
-    shareLabelTimer = window.setTimeout(function() { label.innerHTML = "Share"; }, 2000);
+// Briefly swap the share icon for a check mark to confirm the copy.
+var shareFeedbackTimer = null;
+var showCopied = function() {
+    var button = document.getElementById("share");
+    var icon = document.getElementById("share-icon");
+    icon.className = "fa fa-check fa-lg";
+    button.title = "Link copied";
+    window.clearTimeout(shareFeedbackTimer);
+    shareFeedbackTimer = window.setTimeout(function() {
+        icon.className = "fa fa-share-alt fa-lg";
+        button.title = "Share this page";
+    }, 2000);
 }
 
 var copyLink = function(url) {
     copyText(url).then(function() {
-        showShareLabel("Link copied");
+        showCopied();
     }, function() {
         window.prompt("Copy this link:", url);
     });
