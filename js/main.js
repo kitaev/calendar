@@ -47,6 +47,7 @@ var generateWeekRow = function(monday, currentMonth, currentDate) {
 
 var generateMonth = function(adjusted) {
     var date = new Date(adjusted.getTime());
+    date.setDate(1);
     while(date.getDay() != 1) {
         date.setDate(date.getDate() - 1);
     }
